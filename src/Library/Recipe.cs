@@ -25,7 +25,6 @@ namespace Full_GRASP_And_SOLID
             this.steps.Remove(step);
         }
 
-        // Agregado por SRP
         public string GetTextToPrint()
         {
             string result = $"Receta de {this.FinalProduct.Description}:\n";
@@ -34,13 +33,11 @@ namespace Full_GRASP_And_SOLID
                 result = result + step.GetTextToPrint() + "\n";
             }
 
-            // Agregado por Expert
             result = result + $"Costo de producción: {this.GetProductionCost()}";
 
             return result;
         }
 
-        // Agregado por Expert
         public double GetProductionCost()
         {
             double result = 0;
@@ -51,6 +48,12 @@ namespace Full_GRASP_And_SOLID
             }
 
             return result;
+        }
+
+        // Introducimos un método de creación estático para crear instancias de Recipe
+        public static Recipe CreateRecipe(Product finalProduct)
+        {
+            return new Recipe { FinalProduct = finalProduct };
         }
     }
 }
